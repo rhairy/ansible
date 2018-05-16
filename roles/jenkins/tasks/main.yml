@@ -1,0 +1,4 @@
+---
+# file: roles/jenkins/tasks/main.yml
+
+- import_tasks: jenkins.yml

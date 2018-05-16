@@ -1,0 +1,6 @@
+---
+# file: roles/common/tasks/main.yml
+
+- import_tasks: ntp.yml
+- import_tasks: selinux.yml
+- import_tasks: firewall.yml

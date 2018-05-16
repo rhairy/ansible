@@ -1,0 +1,6 @@
+---
+# file: jenkins.yml
+- hosts: jenkins
+  roles:
+    - common
+    - jenkins

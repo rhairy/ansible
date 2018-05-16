@@ -1,0 +1,8 @@
+---
+# file: roles/common/tasks/selinux.yml
+
+- name: disable selinux on CentOS
+  when: ansible_distribution == "CentOS"
+  selinux:
+    policy: targeted
+    state: disabled

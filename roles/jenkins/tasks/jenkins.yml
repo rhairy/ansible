@@ -1,0 +1,33 @@
+---
+# file: roles/jenkins/tasks/jenkins.yml
+
+- name: install jenkins-stable repo on CentOS
+  when: ansible_distribution == "CentOS"
+  yum_repository:
+    name: jenkins
+    baseurl: http://pkg.jenkins.io/redhat-stable
+    gpgcheck: yes
+    gpgkey: http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+    state: present
+    description: "Jenkins Stable Repo"
+
+- name: install java on CentOS
+  when: ansible_distribution == "CentOS"
+  yum:
+    name: java
+    state: installed
+ 
+- name: install jenkins on CentOS
+  when: ansible_distribution == "CentOS"
+  yum:
+    name: jenkins
+    state: installed
+
+- name: start jenkins on CentOS
+  when: ansible_distribution == "CentOS"
+  service:
+    name: jenkins
+    state: started
+    enabled: yes
+
+  

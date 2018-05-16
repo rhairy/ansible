@@ -1,0 +1,35 @@
+---
+# file: roles/common/tasks/main.yml
+
+- name: install ntp on CentOS
+  when: ansible_distribution == "CentOS"
+  yum:
+    name: ntp
+    state: installed
+
+- name: install ntp configuration file on CentOS
+  when: ansible_distribution == "CentOS"
+  template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+  notify:
+    - restart ntpd
+
+- name: set ntp configuration file permissions on CentOS
+  when: ansible_distribution == "CentOS"
+  file:
+    path: /etc/ntp.conf 
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart ntpd
+
+- name: start ntpd on CentOS
+  when: ansible_distribution == "CentOS"
+  service:
+    name: ntpd
+    state: started
+    enabled: yes
+
+  
