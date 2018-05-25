@@ -1,0 +1,30 @@
+---
+# file: roles/jenkins/tasks/apacheweb.yml
+
+- name: install apache web server on CentOS
+  when: ansible_distribution == "CentOS"
+  yum:
+    name: httpd
+    state: installed
+ 
+- name: start apacheweb on CentOS
+  when: ansible_distribution == "CentOS"
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: install apacheweb index.html file on CentOS
+  when: ansible_distribution == "CentOS"
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+
+- name: set apache web index.html file permissions on CentOS
+  when: ansible_distribution == "CentOS"
+  file:
+    path: /var/www/html/index.html
+    owner: apache
+    group: apache
+    mode: 0665
+... 

@@ -1,0 +1,8 @@
+---
+# file: apacheweb.yml
+- hosts: apacheweb
+  gather_facts: yes
+  roles:
+    - common
+    - apacheweb
+...

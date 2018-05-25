@@ -1,0 +1,6 @@
+---
+# file: roles/apacheweb/handlers/main.yml
+- name: restart apacheweb
+  service:
+    name: httpd
+    state: restarted
